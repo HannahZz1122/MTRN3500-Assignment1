@@ -18,7 +18,7 @@ terminated by a semicolon ';'.
 #include "EmbeddedFunctions.h"
 #include <iostream>
 #include <stdint.h>
-
+#include <stdexcept>
 #include <string>
 
 class Galil {
@@ -134,4 +134,7 @@ protected:
 	int setPoint;					// Control Setpoint
 
 	// TODO: Add any new data members or functions BELOW (DO NOT ADD THEM ABOVE THIS LINE)
+	std::string Address;				// Galil address string
+	bool ownsFunctions;					// 1 = this class owns the Functions pointer and should delete it in destructor, 0 = do not delete
+	int result;							// Result of last Galil function call, used for error checking
 };
