@@ -1,6 +1,8 @@
 #include "EmbeddedFunctions.h"
 
-int main(void) {
+using namespace System;
 
+int main(void) {
+    
 	return 0;
 }

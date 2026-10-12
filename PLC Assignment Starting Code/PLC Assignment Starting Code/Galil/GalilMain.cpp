@@ -1,14 +1,7 @@
 #include "Galil.h"
 #include "EmbeddedFunctions.h"
 
-int main() {
-    EmbeddedFunctions a(true);
-    EmbeddedFunctions b(a);
-
-    return 0;
+int main(void) {
+    EmbeddedFunctions funcs;
+    Galil galil(&funcs, "192.168.0.120 -d");
 }
-
-//int main(void) {
-//
-//	return 0;
-//}

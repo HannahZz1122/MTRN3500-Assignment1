@@ -5,6 +5,14 @@
 
 #define DEFAULT_ADDRESS "192.168.0.120 -d"
 
+// HELPER FUNCTIONS
+void CheckGReturn(GReturn result) {
+	if (result != G_NO_ERROR)
+	{
+		throw std::runtime_error("Error in DigitalOutput: " + std::to_string(result));
+	}
+}
+
 Galil::Galil() {
 	Functions = new EmbeddedFunctions();
 	g = nullptr;
@@ -299,7 +307,7 @@ std::ostream& operator<<(std::ostream& output, Galil& galil) {
 	GReturn result = galil.Functions->GInfo(galil.g, buffer, buffer_len);
 	CheckGReturn(result);
 	output << "GInfo: " << std::string(buffer) << std::endl << std::endl;
-	result = galil.Functions->GVersion(galil.g, buffer, buffer_len);
+	result = galil.Functions->GVersion(buffer, buffer_len);
 	CheckGReturn(result);
 	output << "GVersion: " << std::string(buffer) << std::endl << std::endl;
 	return output;
@@ -330,12 +338,4 @@ Galil& Galil::operator=(const Galil& other) {
 		result = other.result;
 	}
 	return *this;
-}
-
-// HELPER FUNCTIONS
-void CheckGReturn(GReturn result) {
-	if (result != G_NO_ERROR)
-	{
-		throw std::runtime_error("Error in DigitalOutput: " + std::to_string(result));
-	}
 }
